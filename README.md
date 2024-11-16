@@ -1,2 +1,2 @@
-# python_development
-Tips for Python development
+# Python development
+* This repositories summarizes the techniques for Python developing.
