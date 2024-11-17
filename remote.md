@@ -1,2 +1,0 @@
-# Remote development guide
-* 
