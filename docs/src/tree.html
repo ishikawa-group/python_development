@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>Sphinx · HonKit</title>
+        <title>Directory tree of Pytohn library · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.0.2">
@@ -11,20 +11,20 @@
         
         
     
-    <link rel="stylesheet" href="gitbook/style.css">
+    <link rel="stylesheet" href="../gitbook/style.css">
 
     
             
                 
-                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
                 
             
                 
-                <link rel="stylesheet" href="gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -52,12 +52,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="git.html" />
     
-    <link rel="prev" href="honkit.html" />
+    
+    <link rel="prev" href="../" />
     
 
     </head>
@@ -86,9 +88,9 @@
         
         
     
-        <li class="chapter " data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="../">
             
-                <a href="./">
+                <a href="../">
             
                     
                     Introduction
@@ -99,7 +101,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="tree.html">
+        <li class="chapter active" data-level="1.2" data-path="tree.html">
             
                 <a href="tree.html">
             
@@ -164,7 +166,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.7" data-path="sphinx.html">
+        <li class="chapter " data-level="1.7" data-path="sphinx.html">
             
                 <a href="sphinx.html">
             
@@ -207,7 +209,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Sphinx</a>
+        <a href=".." >Directory tree of Pytohn library</a>
     </h1>
 </div>
 
@@ -222,62 +224,33 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="sphinx">Sphinx</h1>
+                                <h1 id="directory-trees-in-python-library">Directory trees in Python library</h1>
 <ul>
-<li><a href="https://github.com/executablebooks/MyST-Parser" target="_blank">https://github.com/executablebooks/MyST-Parser</a></li>
-</ul>
-<h1 id="ライブラリのインストール">ライブラリのインストール</h1>
-<h2 id="ローカルにあるパッケージのインストール">ローカルにあるパッケージのインストール</h2>
-<ul>
-<li><code>setup.py</code>のある場所に移動し<code>pip install --editable .</code></li>
-<li><code>editable</code>をつけておくと、コードの変更がライブラリを使った場合にも反映される</li>
-<li><p><code>setup.py</code>は以下のようにすること</p>
-<pre><code class="lang-python"><span class="hljs-keyword">from</span> setuptools <span class="hljs-keyword">import</span> setup
-<span class="hljs-keyword">from</span> setuptools <span class="hljs-keyword">import</span> find_packages
-
-setup(
-    name=<span class="hljs-string">"パッケージ名"</span>,
-    version=<span class="hljs-string">"0.1.0"</span>,
-    license=<span class="hljs-string">"ライセンス"</span>,
-    description=<span class="hljs-string">"パッケージの説明"</span>,
-    author=<span class="hljs-string">"作成者"</span>,
-    url=<span class="hljs-string">"GitHubなどURL"</span>,
-    packages=find_packages(include=[<span class="hljs-string">"your_modules"</span>]),
-)
+<li>Following is the typical directory trees in Python library.<pre><code>(project)
+|-- (project) ... Source directory for scripts
+|   |-- __init__.py
+|   `-- *.py
+|
+|-- (sub_project)
+|   |-- __init__.py
+|   `-- *.py
+|
+|-- tests ... Test scripts
+  |-- __init__.py
+  `-- *.py
+</code></pre></li>
+<li>When the Python script is only one, you can put test codes in <code>project</code>.</li>
+<li>In the above case, calling <code>mod.py</code> in (sub_project) is done as:<pre><code class="lang-python">  <span class="hljs-keyword">from</span> sub_project <span class="hljs-keyword">import</span> mod
 </code></pre>
 </li>
-</ul>
-<h2 id="pypi">PyPI</h2>
-<ul>
-<li><code>pip install xxx</code>でインストールできるようにする</li>
-</ul>
-<h3 id="testpypiで試す">testPyPIで試す</h3>
-<ul>
-<li><code>setup.py</code>を作る</li>
-<li>testPyPIのアカウントを作成</li>
-<li>tokenを作成</li>
-<li><code>~/.pypirc</code>を作成。usernameを<code>__token__</code>にし、passwordにtokenをペースト<ul>
-<li>usernameをログイン名に、passwordをパスワードにしてもよいが平文なのがネック</li>
+<li>You need to distinguish "library" and "application".<ul>
+<li>Library: Codes used by import</li>
+<li>Application: Directory execured.</li>
+<li>If you want to use a script in both library and application purposes, name it as <code>__main__.py</code>.<ul>
+<li>In that case, execute as <code>python -m (project)</code>.</li>
 </ul>
 </li>
-<li><code>python -m build</code>: --&gt; <code>dist</code>ができる</li>
-<li><code>python -m twine upload --repository testpypi dist/*</code></li>
-<li><p><code>pip install -i https://test.pypi.org/simple/ my_package_name</code>: これでインストールできる</p>
-</li>
-<li><p>同じversion番号だと複数回アップロードできないので注意</p>
-</li>
-<li>サブディレクトリにもすべて<code>__init.py__</code>を入れること。中身は空で良い</li>
 </ul>
-<h4 id="refs">refs</h4>
-<ul>
-<li><a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/" target="_blank">https://packaging.python.org/en/latest/tutorials/packaging-projects/</a></li>
-<li><a href="https://zenn.dev/sikkim/articles/490f4043230b5a" target="_blank">https://zenn.dev/sikkim/articles/490f4043230b5a</a></li>
-</ul>
-<h4 id="requirementstxtの自動作成">requirements.txtの自動作成</h4>
-<ul>
-<li>pipreqsで簡単に作成できる<pre><code class="lang-python">pip install pipreqs
-pipreqs .
-</code></pre>
 </li>
 </ul>
 
@@ -307,10 +280,14 @@ pipreqs .
 
             
                 
-                <a href="honkit.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Honkit">
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="git.html" class="navigation navigation-next " aria-label="Next page: Git">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -319,7 +296,7 @@ pipreqs .
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Sphinx","level":"1.7","depth":1,"previous":{"title":"Honkit","level":"1.6","depth":1,"path":"honkit.md","ref":"honkit.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sphinx.md","mtime":"2024-11-16T06:21:09.184Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2024-11-17T01:35:07.293Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Directory tree of Pytohn library","level":"1.2","depth":1,"next":{"title":"Git","level":"1.3","depth":1,"path":"src/git.md","ref":"src/git.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"src/tree.md","mtime":"2024-11-16T06:15:53.295Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2024-11-17T13:36:07.779Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -369,31 +346,31 @@ pipreqs .
             book.classList.remove("honkit-cloak");
         }
     </script>
-    <script src="gitbook/gitbook.js"></script>
-    <script src="gitbook/theme.js"></script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
     
         
-        <script src="gitbook/gitbook-plugin-hide-published-with/plugin.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        <script src="../gitbook/gitbook-plugin-hide-published-with/plugin.js"></script>
         
     
         
-        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
         
     
         
-        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
         
     
         
-        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
         
     
         
-        <script src="gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 
