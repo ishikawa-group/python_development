@@ -17,7 +17,7 @@
 0. オリジナルのレポジトリをcloneする
   * `git clone https://github... .`
 1. 作業用ブランチを作る("feature")
-  * `git checkout -b feature`
+  * `git branch feature`
 2. ファイルを編集
   * `vi ...`
 3. 編集ファイルをadd, commitする
@@ -112,3 +112,52 @@ jobs:
   + jobsは1つ以上のstepsで構成されており、stepsの中にrunコマンドが1つ以上構成されています
 * run
   + runに実行するコマンドを以下のように記載していきます。nameにrunの処理について書くことができ、GitHub上で確認できます
+
+# Slack連携
+* Githubの通知をSlackに飛ばすことができる
+1. Slack側にGithubアプリをインストールする
+  + ワークスペース管理者の承認が必要なので、大学全体のワークスペースとかでは難しい
+  + Common work space (CWS)を申請し、そこでインストールする
+2. GithubアプリをインストールしたらSlackから設定する
+  + Githubアカウントと連携する
+  + アプリbotに`/github subscribe organization-name`などを設定する
+  + 例: 全てのcommitを受け取る: `/github subscribe organization-name commit:*`
+3. Githubの認証画面が開くので、設定する
+
+---
+
+# まとめ
+* レベルで分けると次のようになる
+
+## 1. 初心者 (Level 1)
+- [ ] Gitの存在を知り、バージョン管理が何であるかをざっくり理解している
+- [ ] GitHubにアカウントを持っている
+- [ ] Githubの何かのリモートリポジトリをローカルに`git clone`でクローンすることができる
+
+## 2. Gitの基本操作 (Level 2)
+- [ ] `git init`, `git add`, `git commit`を使ってローカルのファイルの変更をリモートに反映させることができる
+- [ ] ローカルリポジトリの変更を`git push`でGitHubにプッシュできる
+
+## 3. GitHubの基本機能 (Level 3)
+- [ ] `git branch`を使ってブランチの作成や削除ができる
+- [ ] プルリクエストを作成し、ブランチのマージができる
+
+## 4. GitHubのコラボレーション (Level 4)
+- [ ] 他の開発者とリポジトリを共有し、プルリクエストを利用できる- [ ] 衝突が発生した際に簡単なマージコンフリクトを解決できる。
+
+## 5. 中級者 (Level 5)
+- [ ] リベースとマージ: git rebase と git merge の違いを理解し、適切に使い分ける。
+- [ ] リモートリポジトリ管理: git fetch や git pull を使って、リモートリポジトリの変更を取り込む。
+
+## 6. 高度なGitの操作 (Level 6)
+- [ ] `git reset`, `git revert`, `git cherry-pick` を使って履歴の変更を管理できる。
+- [ ] 複数のブランチを管理し、より複雑な開発フロー（例：Git Flow)を実践できる。
+
+## 7. GitHubの高度な使い方 (Level 7)
+- [ ] CI/CDの設定を通して、コードの自動テストやデプロイをGitHub Actionsで実装できる
+- [ ] GitHub IssuesやProjectボードを使ってプロジェクトのタスク管理を行うことができる
+
+## 8. 上級者 (Level 8)
+- [ ] 大規模なリポジトリや複数のリモートリポジトリの管理に慣れている。
+- [ ] チームでの協力作業やGitHubの設定（アクセス権管理やチーム管理）を効果的に活用。
+- [ ] 高度な操作（git bisect, git reflog など）を使いこなして、最適なリポジトリ管理ができる。
