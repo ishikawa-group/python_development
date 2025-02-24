@@ -1,35 +1,37 @@
 # logging
-* ログ(履歴)を出力する
-* Pythonスクリプトの出力は、最初は`print`でも良いが可能なら`logging`にしたほうがよい
+* `logging` is a library for outputting logs.
+* While it's fine to start with `print` for Python script output, it's better to use `logging` when possible.
+1. Flexibility: Logging allows you to set different logging levels (e.g., DEBUG, INFO, WARNING, ERROR, CRITICAL) and control the output based on the level of importance.
+2. Configurability: Logging can be configured to output messages to different destinations, such as the console, files, or external systems, without changing the code.
 
-## 基本のログ出力
+## Basic log output
 ```python
 import logging
 
 logging.basicConfig(level=logging.INFO)
 
-logging.debug("デバッグログ")  # 表示されない（INFO以上が対象）
-logging.info("情報ログ")
-logging.warning("警告ログ")
-logging.error("エラーログ")
-logging.critical("致命的エラーログ")
+logging.debug("Debug log")  # Not displayed (INFO and above only)
+logging.info("Information log")
+logging.warning("Warning log")
+logging.error("Error log")
+logging.critical("Critical error log")
 ```
-**出力結果**
+**Output result**
 ```
-INFO:root:情報ログ
-WARNING:root:警告ログ
-ERROR:root:エラーログ
-CRITICAL:root:致命的エラーログ
+INFO:root:Information log
+WARNING:root:Warning log
+ERROR:root:Error log
+CRITICAL:root:Critical error log
 ```
 
-## ログをファイルに保存
+## Save logs to file
 ```python
 logging.basicConfig(filename="app.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logging.info("ファイルに記録されるログ")
+logging.info("Log recorded to file")
 ```
---> `app.log` にログが保存される。
+* Logs are saved to `app.log`.
 
-## コンソール＆ファイル両方に出力
+## Output to both console & file
 ```python
 logger = logging.getLogger("MyLogger")
 logger.setLevel(logging.DEBUG)
@@ -44,6 +46,6 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
-logger.info("コンソールとファイルに出力")
+logger.info("Output to console and file")
 ```
---> **コンソール＆ファイル** にログが記録される。
+* Logs are recorded to **both console & file**.

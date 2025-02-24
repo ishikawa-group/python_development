@@ -46,3 +46,6 @@ git add .                       # Stage all changes
 git commit -m "Updated feature" # Commit changes locally
 git push origin main            # Push changes to remote repository
 ```
+
+## Exercise
+* Make your own temporary repository on GitHub. Write some code at local, and then `git add`, `git commit`, `git push` to upload your change.

@@ -325,11 +325,91 @@ import some-library</li>
   print("This is main function")
   ...
   some_function()
-  ...
-```</p>
+  ...</p>
+<pre><code>### Advantages
+* When you execute this script, programs starts with `if __name__ == __main__:` part.
+* This is easier to read, because one can start reading code from main function part.
+* Other advantage of using `main` function is when `.py` file is read as the module file. If there is no `main` function, all the lines are executed when read as a module file. But only non-main part is read when it is used as a module file.
+
+### The other way
+* Often it is done to define `main` function and put it in the `if ... main:` part.
+```python
+def main()
+  print("This is main function")
+
+if __name__ == main__:
+  main()
+</code></pre><ul>
+<li>Its' your choice to define main function but just <code>if ... main</code> is OK.</li>
+</ul>
+<h2 id="exercises">Exercises</h2>
+<h3 id="exercise-1-fix-the-main-function">Exercise 1: Fix the Main Function</h3>
 <ul>
-<li>When you execute this script, programs starts with <code>if __name__ == __main__:</code> part.</li>
-<li>This is easier to read, because one can start reading code from main function part.</li>
+<li>Fix the following code to properly implement the main function structure:
+```python
+def calculate_average(numbers):
+  return sum(numbers) / len(numbers)</li>
+</ul>
+<p>print("Starting the program")
+numbers = [1, 2, 3, 4, 5]
+result = calculate_average(numbers)
+print(f"The average is: {result}")</p>
+<pre><code>
+**Answer:**
+```python
+def calculate_average(numbers):
+    return sum(numbers) / len(numbers)
+
+
+if __name__ == "__main__":
+    print("Starting the program")
+    numbers = [1, 2, 3, 4, 5]
+    result = calculate_average(numbers)
+    print(f"The average is: {result}")
+</code></pre><ul>
+<li>Changes made:<ul>
+<li>Added the <code>if __name__ == "__main__":</code> part</li>
+<li>Properly indented the code</li>
+<li>Added appropriate spacing between functions (two branck lines)</li>
+</ul>
+</li>
+</ul>
+<h3 id="exercise-2-module-implementation">Exercise 2: Module Implementation</h3>
+<ul>
+<li>Create a temperature conversion module that can be both imported and run directly. Save it as <code>temperature.py</code>:</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-comment"># Original (needs fixing)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">celsius_to_fahrenheit</span>(<span class="hljs-params">celsius</span>):
+    <span class="hljs-keyword">return</span> (celsius * <span class="hljs-number">9</span>/<span class="hljs-number">5</span>) + <span class="hljs-number">32</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">fahrenheit_to_celsius</span>(<span class="hljs-params">fahrenheit</span>):
+    <span class="hljs-keyword">return</span> (fahrenheit - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span>/<span class="hljs-number">9</span>
+
+temp = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter temperature in Celsius: "</span>))
+result = celsius_to_fahrenheit(temp)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{temp}</span>°C is <span class="hljs-subst">{result}</span>°F"</span>)
+</code></pre>
+<p><strong>Answer:</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">celsius_to_fahrenheit</span>(<span class="hljs-params">celsius</span>):
+    <span class="hljs-string">"""Convert Celsius to Fahrenheit."""</span>
+    <span class="hljs-keyword">return</span> (celsius * <span class="hljs-number">9</span>/<span class="hljs-number">5</span>) + <span class="hljs-number">32</span>
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">fahrenheit_to_celsius</span>(<span class="hljs-params">fahrenheit</span>):
+    <span class="hljs-string">"""Convert Fahrenheit to Celsius."""</span>
+    <span class="hljs-keyword">return</span> (fahrenheit - <span class="hljs-number">32</span>) * <span class="hljs-number">5</span>/<span class="hljs-number">9</span>
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    temp = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter temperature in Celsius: "</span>))
+    result = celsius_to_fahrenheit(temp)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{temp}</span>°C is <span class="hljs-subst">{result}</span>°F"</span>)
+</code></pre>
+<p>Changes made:</p>
+<ul>
+<li>Added docstrings to functions</li>
+<li>Added the <code>if __name__ == "__main__":</code> part</li>
+<li>This way, the module can be imported without running the interactive part</li>
 </ul>
 
                                 
@@ -374,7 +454,7 @@ import some-library</li>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Writing Python script","level":"1.2","depth":1,"next":{"title":"Using virtual environment","level":"1.3","depth":1,"path":"markdown/venv.md","ref":"markdown/venv.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/writing_script.md","mtime":"2025-02-21T12:32:36.331Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-24T05:35:39.930Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Writing Python script","level":"1.2","depth":1,"next":{"title":"Using virtual environment","level":"1.3","depth":1,"path":"markdown/venv.md","ref":"markdown/venv.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/writing_script.md","mtime":"2025-02-24T08:06:48.998Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-24T15:07:10.273Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

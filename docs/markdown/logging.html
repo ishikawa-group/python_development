@@ -304,31 +304,35 @@
                                 
                                 <h1 id="logging">logging</h1>
 <ul>
-<li>ログ(履歴)を出力する</li>
-<li>Pythonスクリプトの出力は、最初は<code>print</code>でも良いが可能なら<code>logging</code>にしたほうがよい</li>
+<li><code>logging</code> is a library for outputting logs.</li>
+<li>While it's fine to start with <code>print</code> for Python script output, it's better to use <code>logging</code> when possible.</li>
+<li>Flexibility: Logging allows you to set different logging levels (e.g., DEBUG, INFO, WARNING, ERROR, CRITICAL) and control the output based on the level of importance.</li>
+<li>Configurability: Logging can be configured to output messages to different destinations, such as the console, files, or external systems, without changing the code.</li>
 </ul>
-<h2 id="基本のログ出力">基本のログ出力</h2>
+<h2 id="basic-log-output">Basic log output</h2>
 <pre><code class="lang-python"><span class="hljs-keyword">import</span> logging
 
 logging.basicConfig(level=logging.INFO)
 
-logging.debug(<span class="hljs-string">"デバッグログ"</span>)  <span class="hljs-comment"># 表示されない（INFO以上が対象）</span>
-logging.info(<span class="hljs-string">"情報ログ"</span>)
-logging.warning(<span class="hljs-string">"警告ログ"</span>)
-logging.error(<span class="hljs-string">"エラーログ"</span>)
-logging.critical(<span class="hljs-string">"致命的エラーログ"</span>)
+logging.debug(<span class="hljs-string">"Debug log"</span>)  <span class="hljs-comment"># Not displayed (INFO and above only)</span>
+logging.info(<span class="hljs-string">"Information log"</span>)
+logging.warning(<span class="hljs-string">"Warning log"</span>)
+logging.error(<span class="hljs-string">"Error log"</span>)
+logging.critical(<span class="hljs-string">"Critical error log"</span>)
 </code></pre>
-<p><strong>出力結果</strong></p>
-<pre><code>INFO:root:情報ログ
-WARNING:root:警告ログ
-ERROR:root:エラーログ
-CRITICAL:root:致命的エラーログ
-</code></pre><h2 id="ログをファイルに保存">ログをファイルに保存</h2>
+<p><strong>Output result</strong></p>
+<pre><code>INFO:root:Information log
+WARNING:root:Warning log
+ERROR:root:Error log
+CRITICAL:root:Critical error log
+</code></pre><h2 id="save-logs-to-file">Save logs to file</h2>
 <pre><code class="lang-python">logging.basicConfig(filename=<span class="hljs-string">"app.log"</span>, level=logging.INFO, <span class="hljs-built_in">format</span>=<span class="hljs-string">"%(asctime)s - %(levelname)s - %(message)s"</span>)
-logging.info(<span class="hljs-string">"ファイルに記録されるログ"</span>)
+logging.info(<span class="hljs-string">"Log recorded to file"</span>)
 </code></pre>
-<p>--&gt; <code>app.log</code> にログが保存される。</p>
-<h2 id="コンソール＆ファイル両方に出力">コンソール＆ファイル両方に出力</h2>
+<ul>
+<li>Logs are saved to <code>app.log</code>.</li>
+</ul>
+<h2 id="output-to-both-console--file">Output to both console &amp; file</h2>
 <pre><code class="lang-python">logger = logging.getLogger(<span class="hljs-string">"MyLogger"</span>)
 logger.setLevel(logging.DEBUG)
 
@@ -342,9 +346,11 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
-logger.info(<span class="hljs-string">"コンソールとファイルに出力"</span>)
+logger.info(<span class="hljs-string">"Output to console and file"</span>)
 </code></pre>
-<p>--&gt; <strong>コンソール＆ファイル</strong> にログが記録される。</p>
+<ul>
+<li>Logs are recorded to <strong>both console &amp; file</strong>.</li>
+</ul>
 
                                 
                                 </section>
@@ -388,7 +394,7 @@ logger.info(<span class="hljs-string">"コンソールとファイルに出力"<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Using logging","level":"1.11","depth":1,"next":{"title":"Making documents with Sphinx","level":"1.12","depth":1,"path":"markdown/sphinx.md","ref":"markdown/sphinx.md","articles":[]},"previous":{"title":"Using Pathlib","level":"1.10","depth":1,"path":"markdown/pathlib.md","ref":"markdown/pathlib.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/logging.md","mtime":"2025-02-11T06:30:07.202Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-24T05:35:39.930Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Using logging","level":"1.11","depth":1,"next":{"title":"Making documents with Sphinx","level":"1.12","depth":1,"path":"markdown/sphinx.md","ref":"markdown/sphinx.md","articles":[]},"previous":{"title":"Using Pathlib","level":"1.10","depth":1,"path":"markdown/pathlib.md","ref":"markdown/pathlib.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/logging.md","mtime":"2025-02-24T15:00:26.289Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-24T15:07:10.273Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -20,5 +20,88 @@ if __name__ == __main__:
   some_function()
   ...
 ```
+### Advantages
 * When you execute this script, programs starts with `if __name__ == __main__:` part.
 * This is easier to read, because one can start reading code from main function part.
+* Other advantage of using `main` function is when `.py` file is read as the module file. If there is no `main` function, all the lines are executed when read as a module file. But only non-main part is read when it is used as a module file.
+
+### The other way
+* Often it is done to define `main` function and put it in the `if ... main:` part.
+```python
+def main()
+  print("This is main function")
+
+if __name__ == main__:
+  main()
+```
+* Its' your choice to define main function but just `if ... main` is OK.
+
+## Exercises
+
+### Exercise 1: Fix the Main Function
+* Fix the following code to properly implement the main function structure:
+```python
+def calculate_average(numbers):
+    return sum(numbers) / len(numbers)
+
+print("Starting the program")
+numbers = [1, 2, 3, 4, 5]
+result = calculate_average(numbers)
+print(f"The average is: {result}")
+```
+
+**Answer:**
+```python
+def calculate_average(numbers):
+    return sum(numbers) / len(numbers)
+
+
+if __name__ == "__main__":
+    print("Starting the program")
+    numbers = [1, 2, 3, 4, 5]
+    result = calculate_average(numbers)
+    print(f"The average is: {result}")
+```
+
+* Changes made:
+  - Added the `if __name__ == "__main__":` part
+  - Properly indented the code
+  - Added appropriate spacing between functions (two branck lines)
+
+### Exercise 2: Module Implementation
+* Create a temperature conversion module that can be both imported and run directly. Save it as `temperature.py`:
+
+```python
+# Original (needs fixing)
+def celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
+
+def fahrenheit_to_celsius(fahrenheit):
+    return (fahrenheit - 32) * 5/9
+
+temp = float(input("Enter temperature in Celsius: "))
+result = celsius_to_fahrenheit(temp)
+print(f"{temp}°C is {result}°F")
+```
+
+**Answer:**
+```python
+def celsius_to_fahrenheit(celsius):
+    """Convert Celsius to Fahrenheit."""
+    return (celsius * 9/5) + 32
+
+
+def fahrenheit_to_celsius(fahrenheit):
+    """Convert Fahrenheit to Celsius."""
+    return (fahrenheit - 32) * 5/9
+
+
+if __name__ == "__main__":
+    temp = float(input("Enter temperature in Celsius: "))
+    result = celsius_to_fahrenheit(temp)
+    print(f"{temp}°C is {result}°F")
+```
+Changes made:
+- Added docstrings to functions
+- Added the `if __name__ == "__main__":` part
+- This way, the module can be imported without running the interactive part
