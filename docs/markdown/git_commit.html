@@ -302,229 +302,54 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="git">Git</h1>
-<h2 id="github-flow">Github Flow</h2>
+                                <h1 id="git-and-github">Git and GitHub</h1>
+<h2 id="what-is-git">What is Git?</h2>
 <ul>
-<li>ブランチの運用に関するルールを定めたもの<ul>
-<li>main: 公開するブランチ</li>
-<li>develop: 開発用ブランチ</li>
-<li>feature: 機能の開発など。適宜わかりやすいブランチ名にする</li>
-<li>featureについては自由にpushしてよく、機能が固まったらdevelopにpull requestする</li>
-<li>featureからmainへのpull requestは管理者が行う</li>
+<li>Git is a <strong>distributed version control system</strong> that helps developers track changes in their code, collaborate with others, and manage different versions of a project. It allows users to:<ul>
+<li>Keep a history of changes.</li>
+<li>Work on different features using branches.</li>
+<li>Merge code changes efficiently.</li>
 </ul>
 </li>
-<li>feature -&gt; developおよびdevelop -&gt; mainへのpull requestの際にはGithub Actionsにより自動テストを行う(後述)</li>
 </ul>
-<h2 id="pull-request">pull request</h2>
+<h2 id="what-is-a-repository">What is a Repository?</h2>
 <ul>
-<li>コードを作成したブランチを他のブランチにまとめる(merge)すること</li>
-<li>大抵は管理者に確認(review)してもらい、承認してもらったらpull requestが完了する</li>
+<li>A <strong>repository (repo)</strong> is a storage location for a project that contains all its files, history, and version control information.</li>
+<li>Repositories can be <strong>local</strong> (stored on your computer) or <strong>remote</strong> (hosted on platforms like GitHub etc.). </li>
 </ul>
-<h3 id="手順">手順</h3>
+<h2 id="what-is-github">What is GitHub?</h2>
 <ul>
-<li>以下、"feature"ブランチを作成し、"develop"にpull requestする</li>
-<li>オリジナルのレポジトリをcloneする<ul>
-<li><code>git clone https://github... .</code></li>
+<li>GitHub is a <strong>web-based platform</strong> that provides hosting for Git repositories. It offers features like:<ul>
+<li>Remote repository storage.</li>
+<li>Collaboration tools (pull requests, issues, discussions).</li>
 </ul>
 </li>
-<li>作業用ブランチを作る("feature")<ul>
-<li><code>git branch feature</code></li>
 </ul>
-</li>
-<li>ファイルを編集<ul>
-<li><code>vi ...</code></li>
-</ul>
-</li>
-<li>編集ファイルをadd, commitする<ul>
-<li><code>git add .</code></li>
-<li><code>git commit -m "made some change"</code></li>
-</ul>
-</li>
-<li>featureブランチからGithub上のoriginブランチにpushする<ul>
-<li>初回のみ: <code>git push --set-upstream origin feature</code></li>
-<li>2回目以降: <code>git push</code></li>
-</ul>
-</li>
-<li>Github上(ブラウザ)で該当するレポジトリにアクセス、Pull requestを行う<ul>
-<li>緑の"Compare &amp; Pull request"をクリックする</li>
-<li>"base"が<em>マージ先</em>で"compare"が<em>マージ元</em>になっていることを確認</li>
-<li>上記のタブがなければブランチの選択で"feature"を選んで"Contribute", "Open pull request"をクリック</li>
-</ul>
-</li>
-<li>"Create pull request"をクリック<ul>
-<li>コメントなどの情報を入れる</li>
-<li>コードの差分などを確認</li>
-</ul>
-</li>
-<li><p>ブランチをマージする</p>
+<h2 id="concept-of-add-commit-and-push">Concept of add, commit, and push</h2>
 <ul>
-<li>管理者が行う</li>
-<li>pull requestを承認する場合は"Confirm merge"</li>
-<li>承認しない場合は"Close pull request"する</li>
-<li>一度承認してしまって、やっぱり元に戻したい場合は"revert"をクリックする</li>
-<li>Github Actionsでpull requestに伴うチェックが入る場合は、この段階で入る<ul>
-<li>チェックを通過しなければfailedになる</li>
-<li>failしてもマージすることは可能</li>
+<li>Git follows a three-step process for saving changes:</li>
+<li><strong>Add</strong>: Moves changes from the working directory to the staging area.</li>
+<li><strong>Commit</strong>: Saves the staged changes to the local repository with a message.</li>
+<li><strong>Push</strong>: Uploads committed changes to a remote repository.</li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p>mainが更新されたらdevelopなど、他のbranchも更新すること</p>
-<ul>
-<li>ブラウザでdevelopなどに移動し、"This branch is X commits behind main"をクリック -&gt; pull requestでマージする</li>
-</ul>
-</li>
-</ul>
-<h1 id="github-actions">Github Actions</h1>
-<ul>
-<li>Githubが提供しているCI/CDツール</li>
-<li>テストやフォーマッティングなどを自動化できる</li>
-</ul>
-<h2 id="利用法">利用法</h2>
-<ul>
-<li>フローで行いたい処理を書いたYAMLファイルを<code>./github/workflow/</code>に置く</li>
-<li>YAMLファイルに書かれたイベント(push, pull requestなど)が行われたら自動的に処理が行われる</li>
-<li>処理の結果などの詳細はGithub(ブラウザ)で確認する</li>
-<li>YAMLのテンプレートは <a href="https://github.com/marketplace?type=actions" target="_blank">https://github.com/marketplace?type=actions</a> にある</li>
-</ul>
-<h2 id="hello-world">Hello world</h2>
-<pre><code class="lang-yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">Hello</span> <span class="hljs-string">world</span>
-<span class="hljs-attr">on:</span> <span class="hljs-string">push</span>
-
-<span class="hljs-attr">jobs:</span>
-  <span class="hljs-attr">build:</span>
-    <span class="hljs-attr">name:</span> <span class="hljs-string">Greeting</span>
-    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
-    <span class="hljs-attr">steps:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">run:</span> <span class="hljs-string">echo</span> <span class="hljs-string">"Hello world"</span>
+<h3 id="1-add">1. add</h3>
+<h4 id="example">Example:</h4>
+<pre><code class="lang-bash">git add filename.txt  <span class="hljs-comment"># Adds a specific file</span>
+git add .             <span class="hljs-comment"># Adds all changed files in the current directory</span>
 </code></pre>
-<ul>
-<li>on:に動くきっかけを記載します。<ul>
-<li>今回は、pushのタイミングで動かしたかったのでpushと書きました</li>
-</ul>
-</li>
-<li>runs-on:に実行環境を記載します<ul>
-<li>今回は、最新のUbuntu環境で動かしたかったのでubuntu-latestと書きました</li>
-</ul>
-</li>
-<li>steps:に実行したい内容を書きます<ul>
-<li>今回は、画面にHello World!を表示させたいのでechoを書きました</li>
-</ul>
-</li>
-</ul>
-<h2 id="フォーマットチェック">フォーマットチェック</h2>
-<pre><code class="lang-yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">formatting</span> <span class="hljs-string">check</span> <span class="hljs-string">with</span> <span class="hljs-string">flake8</span>
-
-<span class="hljs-attr">on:</span>
-  <span class="hljs-attr">push:</span>
-    <span class="hljs-attr">branches:</span> [ <span class="hljs-string">"main"</span> ]
-  <span class="hljs-attr">pull_request:</span>
-    <span class="hljs-attr">branches:</span> [ <span class="hljs-string">"main"</span> ]
-
-<span class="hljs-attr">jobs:</span>
-  <span class="hljs-attr">command:</span>
-    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
-    <span class="hljs-attr">steps:</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span>
-        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v4</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-python@v4</span>
-        <span class="hljs-attr">with:</span>
-          <span class="hljs-attr">python-version:</span> <span class="hljs-number">3.11</span>
-
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">dependencies</span>
-        <span class="hljs-attr">run:</span> <span class="hljs-string">pip</span> <span class="hljs-string">install</span> <span class="hljs-string">flake8</span>
-      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Run</span> <span class="hljs-string">checking</span>
-        <span class="hljs-attr">run:</span> <span class="hljs-string">flake8</span> <span class="hljs-string">.</span>
+<h3 id="2-commit">2. commit</h3>
+<h4 id="example">Example:</h4>
+<pre><code class="lang-bash">git commit -m <span class="hljs-string">"Added a new feature"</span>
 </code></pre>
-<h2 id="設定の意味">設定の意味</h2>
-<ul>
-<li>jobs<ul>
-<li>処理の最上位単位です。jobsの中に1つ以上のジョブIDと共に処理が設定され、並列で実行されます</li>
-</ul>
-</li>
-<li>on<ul>
-<li>どのイベントが発生したら処理を実行するか指定します</li>
-</ul>
-</li>
-<li>runs-on<ul>
-<li>ジョブを実行するOS(ランナー)を指定します</li>
-</ul>
-</li>
-<li>uses<ul>
-<li>第三者もしくはGitHubが作成したActionsをyml内に記載することで実行することもできます。よく使われているのがGitHubが用意しているactions/checkout@v4です</li>
-</ul>
-</li>
-<li>steps<ul>
-<li>jobsは1つ以上のstepsで構成されており、stepsの中にrunコマンドが1つ以上構成されています</li>
-</ul>
-</li>
-<li>run<ul>
-<li>runに実行するコマンドを以下のように記載していきます。nameにrunの処理について書くことができ、GitHub上で確認できます</li>
-</ul>
-</li>
-</ul>
-<h1 id="slack連携">Slack連携</h1>
-<ul>
-<li>Githubの通知をSlackに飛ばすことができる</li>
-<li>Slack側にGithubアプリをインストールする<ul>
-<li>ワークスペース管理者の承認が必要なので、大学全体のワークスペースとかでは難しい</li>
-<li>Common work space (CWS)を申請し、そこでインストールする</li>
-</ul>
-</li>
-<li>GithubアプリをインストールしたらSlackから設定する<ul>
-<li>Githubアカウントと連携する</li>
-<li>アプリbotに<code>/github subscribe organization-name</code>などを設定する</li>
-<li>例: 全てのcommitを受け取る: <code>/github subscribe organization-name commit:*</code></li>
-</ul>
-</li>
-<li>Githubの認証画面が開くので、設定する</li>
-</ul>
-<hr></hr>
-<h1 id="まとめ">まとめ</h1>
-<ul>
-<li>レベルで分けると次のようになる</li>
-</ul>
-<h2 id="1-初心者-level-1">1. 初心者 (Level 1)</h2>
-<ul>
-<li>[ ] Gitの存在を知り、バージョン管理が何であるかをざっくり理解している</li>
-<li>[ ] GitHubにアカウントを持っている</li>
-<li>[ ] Githubの何かのリモートリポジトリをローカルに<code>git clone</code>でクローンすることができる</li>
-</ul>
-<h2 id="2-gitの基本操作-level-2">2. Gitの基本操作 (Level 2)</h2>
-<ul>
-<li>[ ] <code>git init</code>, <code>git add</code>, <code>git commit</code>を使ってローカルのファイルの変更をリモートに反映させることができる</li>
-<li>[ ] ローカルリポジトリの変更を<code>git push</code>でGitHubにプッシュできる</li>
-</ul>
-<h2 id="3-githubの基本機能-level-3">3. GitHubの基本機能 (Level 3)</h2>
-<ul>
-<li>[ ] <code>git branch</code>を使ってブランチの作成や削除ができる</li>
-<li>[ ] プルリクエストを作成し、ブランチのマージができる</li>
-</ul>
-<h2 id="4-githubのコラボレーション-level-4">4. GitHubのコラボレーション (Level 4)</h2>
-<ul>
-<li>[ ] 他の開発者とリポジトリを共有し、プルリクエストを利用できる- [ ] 衝突が発生した際に簡単なマージコンフリクトを解決できる。</li>
-</ul>
-<h2 id="5-中級者-level-5">5. 中級者 (Level 5)</h2>
-<ul>
-<li>[ ] リベースとマージ: git rebase と git merge の違いを理解し、適切に使い分ける。</li>
-<li>[ ] リモートリポジトリ管理: git fetch や git pull を使って、リモートリポジトリの変更を取り込む。</li>
-</ul>
-<h2 id="6-高度なgitの操作-level-6">6. 高度なGitの操作 (Level 6)</h2>
-<ul>
-<li>[ ] <code>git reset</code>, <code>git revert</code>, <code>git cherry-pick</code> を使って履歴の変更を管理できる。</li>
-<li>[ ] 複数のブランチを管理し、より複雑な開発フロー（例：Git Flow)を実践できる。</li>
-</ul>
-<h2 id="7-githubの高度な使い方-level-7">7. GitHubの高度な使い方 (Level 7)</h2>
-<ul>
-<li>[ ] CI/CDの設定を通して、コードの自動テストやデプロイをGitHub Actionsで実装できる</li>
-<li>[ ] GitHub IssuesやProjectボードを使ってプロジェクトのタスク管理を行うことができる</li>
-</ul>
-<h2 id="8-上級者-level-8">8. 上級者 (Level 8)</h2>
-<ul>
-<li>[ ] 大規模なリポジトリや複数のリモートリポジトリの管理に慣れている。</li>
-<li>[ ] チームでの協力作業やGitHubの設定（アクセス権管理やチーム管理）を効果的に活用。</li>
-<li>[ ] 高度な操作（git bisect, git reflog など）を使いこなして、最適なリポジトリ管理ができる。</li>
-</ul>
+<h3 id="push">push</h3>
+<h4 id="example">Example:</h4>
+<pre><code class="lang-bash">git push origin main  <span class="hljs-comment"># Pushes changes to the 'main' branch of the remote repo</span>
+</code></pre>
+<h2 id="workflow-example">Workflow Example:</h2>
+<pre><code class="lang-bash">git add .                       <span class="hljs-comment"># Stage all changes</span>
+git commit -m <span class="hljs-string">"Updated feature"</span> <span class="hljs-comment"># Commit changes locally</span>
+git push origin main            <span class="hljs-comment"># Push changes to remote repository</span>
+</code></pre>
 
                                 
                                 </section>
@@ -568,7 +393,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Uploading codes to GitHub with add, commit, push","level":"1.5","depth":1,"next":{"title":"Using json and yaml files","level":"1.6","depth":1,"path":"markdown/json_and_yaml.md","ref":"markdown/json_and_yaml.md","articles":[]},"previous":{"title":"Writing simple documents with markdown","level":"1.4","depth":1,"path":"markdown/markdown.md","ref":"markdown/markdown.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/git_commit.md","mtime":"2025-02-20T15:24:16.791Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-22T15:06:00.334Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Uploading codes to GitHub with add, commit, push","level":"1.5","depth":1,"next":{"title":"Using json and yaml files","level":"1.6","depth":1,"path":"markdown/json_and_yaml.md","ref":"markdown/json_and_yaml.md","articles":[]},"previous":{"title":"Writing simple documents with markdown","level":"1.4","depth":1,"path":"markdown/markdown.md","ref":"markdown/markdown.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/git_commit.md","mtime":"2025-02-23T07:14:57.273Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-02-24T05:35:39.930Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

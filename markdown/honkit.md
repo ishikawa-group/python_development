@@ -1,5 +1,6 @@
 # Introduction
 * Honkit is the fork of GitBook, and it generates the document pages.
+* https://honkit.netlify.app/
 * Now GitBook is not free and its command-line interface (cli) is no longer developed.
 
 # Usage
@@ -123,9 +124,9 @@ git push -u origin main
 * Use Github Pages URL to "About".
 
 ## Update the revision
-1. `npx honkit {your_markdown_directories} docs`
+1. `npx honkit {your_document_directories} docs`
 2. `git add .`; `git commit -m "updated document"`; `git push`
-* The markdown directories should be consistent with `SUMMARY.md`.
+* The document directories should contain `README.md`, `SUMMARY.md`, and `book.json`. Markdown files can be separate directries.
 
 ## References
 * https://www.1ft-seabass.jp/memo/2022/12/06/honkit-setting-202212/
