@@ -7,6 +7,7 @@
 
 ## Main function
 * When you writing Python script, it is highly recommended to separate **function and class parts** and **main part**.
+
 ```python
 import some-library
 
@@ -15,11 +16,12 @@ def some_function():
     return None
 
 if __name__ == __main__:
-  print("This is main function")
-  ...
-  some_function()
-  ...
+    print("This is main function")
+    ...
+    some_function()
+    ...
 ```
+
 ### Advantages
 * When you execute this script, programs starts with `if __name__ == __main__:` part.
 * This is easier to read, because one can start reading code from main function part.
@@ -27,19 +29,22 @@ if __name__ == __main__:
 
 ### The other way
 * Often it is done to define `main` function and put it in the `if ... main:` part.
+
 ```python
 def main()
-  print("This is main function")
+    print("This is main function")
 
 if __name__ == main__:
-  main()
+    main()
 ```
+
 * Its' your choice to define main function but just `if ... main` is OK.
 
 ## Exercises
 
 ### Exercise 1: Fix the Main Function
 * Fix the following code to properly implement the main function structure:
+
 ```python
 def calculate_average(numbers):
     return sum(numbers) / len(numbers)
@@ -51,6 +56,7 @@ print(f"The average is: {result}")
 ```
 
 **Answer:**
+
 ```python
 def calculate_average(numbers):
     return sum(numbers) / len(numbers)
@@ -85,6 +91,7 @@ print(f"{temp}°C is {result}°F")
 ```
 
 **Answer:**
+
 ```python
 def celsius_to_fahrenheit(celsius):
     """Convert Celsius to Fahrenheit."""
@@ -101,7 +108,8 @@ if __name__ == "__main__":
     result = celsius_to_fahrenheit(temp)
     print(f"{temp}°C is {result}°F")
 ```
-Changes made:
-- Added docstrings to functions
-- Added the `if __name__ == "__main__":` part
-- This way, the module can be imported without running the interactive part
+
+* Changes made:
+  - Added docstrings to functions
+  - Added the `if __name__ == "__main__":` part
+  - This way, the module can be imported without running the interactive part

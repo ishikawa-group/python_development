@@ -28,21 +28,21 @@ npx honkit init
 4. Add contents
 * Edit `README.md` and `SUMMARY.md` to add contents.
 * An example of `SUMMARY.md` is
-    + Using single directory
-    ```markdown
-    # Summary
-    * [Introduction](README.md)
-    * [Part1](part1.md)
-    * [Part2](part2.md)
-    ```
-    + Using multiple directories
-    ```markdown
-    # Summary
-    * [Introduction](README.md)
-    * [Chapter 1](chapter1/README.md)
-        * [Contents of Chapter 1](chapter1/contents.md)
-    * [Chapter 2](chapter2.md)
-        * [Contents of Chapter 2](chapter2/contents.md)
+  + Using single directory
+  ```markdown
+  # Summary
+  * [Introduction](README.md)
+  * [Part1](part1.md)
+  * [Part2](part2.md)
+  ```
+  + Using multiple directories
+  ```markdown
+  # Summary
+  * [Introduction](README.md)
+  * [Chapter 1](chapter1/README.md)
+    * [Contents of Chapter 1](chapter1/contents.md)
+  * [Chapter 2](chapter2.md)
+    * [Contents of Chapter 2](chapter2/contents.md)
   ```
 
 5. Preview with localhost
@@ -57,9 +57,10 @@ npx honkit serve
 * Install command is also there.
 * Some plugins have Honkit and GitBook versions. Use Honkit version when available, but GitBook version also works.
 * Useful plugins
-  + `npm i gitbook-plugin-hide-published-with`
-  + `npm i honkit-plugin-katex`
-  + `npm i gitbook-plugin-mathjax`
+  + `npm install -g gitbook-plugin-hide-published-with`
+  + `npm install -g honkit-plugin-katex`
+  + `npm install -g gitbook-plugin-katex-mhchem`
+  + `npm install -g gitbook-plugin-mathjax`
 
 # Setting `book.json`
 * HTML settings should be written in `book.json`.
