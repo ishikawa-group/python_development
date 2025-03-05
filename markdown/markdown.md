@@ -112,7 +112,10 @@ ___
 
 ## Recommended tools
 ### VS Code plugin
-* Markdown preview enhanced: for previewing markdown
+* Markdown preview enhanced: for previewing markdown file.
+* vscode-pandoc: converts markdown to pdf, HTML, etc.
+* Markdown Table: formats a table nicely.
+* Markdown Navigation: Makes TOC based on the headings.
 
 ### Node.js
 * slidev: making slides from markdown
