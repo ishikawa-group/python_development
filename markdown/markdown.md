@@ -110,7 +110,7 @@ ___
 
 * These are the basic elements of Markdown. By combining these elements, you can create well-structured and readable documents.
 
-## Recommended tools for markdown
+## Recommended tools
 ### VS Code plugin
 * Markdown preview enhanced: for previewing markdown
 
