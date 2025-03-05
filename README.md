@@ -6,7 +6,7 @@
 |         | Downloading and using libraries with `pip`                                   |
 | Level 2 | [Writing Python script (.py file)](./markdown/writing_script.md)             |
 |         | Python function and class                                                    |
-|         | [Using virtual environment (`pyenv, venv`)](./markdown/venv.md)              |
+|         | [Using virtual environment (`pyenv, venv`)](./markdown/virtual_environment.md)              |
 |         | [Writing simple documents with markdown](./markdown/markdown.md)             |
 | Level 3 | [Uploading codes to GitHub with add, commit, push](./markdown/git_commit.md) |
 |         | [Using json and yaml files](./markdown/json_and_yaml.md)                     |

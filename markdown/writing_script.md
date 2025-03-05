@@ -1,6 +1,6 @@
 # Writing Python script
-* There are two modes in Python:
-  1. Interpreter mode: open up terminal, and type each lines (after `>>>`).
+* There are two modes to execute the Python program:
+  1. Interpreter mode: open up a terminal, and type each lines (after `>>>`).
   2. Script mode: write `sample.py` file and excecute by `python sample.py`.
 * For some simple tests, interpreter mode is OK but usually script mode is recommended to do Python programing.
 * Using Jupyther Notebook is not recommended, except for very beginners.
@@ -9,7 +9,7 @@
 * When you writing Python script, it is highly recommended to separate **function and class parts** and **main part**.
 
 ```python
-import some-library
+import somelibrary
 
 def some_function():
     print("This is function")
@@ -25,7 +25,8 @@ if __name__ == __main__:
 ### Advantages
 * When you execute this script, programs starts with `if __name__ == __main__:` part.
 * This is easier to read, because one can start reading code from main function part.
-* Other advantage of using `main` function is when `.py` file is read as the module file. If there is no `main` function, all the lines are executed when read as a module file. But only non-main part is read when it is used as a module file.
+* Other advantage of using `main` function is when `.py` file is read as the *module file*.
+  - If there is no `main` function, all the lines are executed when read as a module file. But only non-main part is read when it is used as a module file.
 
 ### The other way
 * Often it is done to define `main` function and put it in the `if ... main:` part.
@@ -42,7 +43,7 @@ if __name__ == main__:
 
 ## Exercises
 
-### Exercise 1: Fix the Main Function
+### 1. Fix the Main Function
 * Fix the following code to properly implement the main function structure:
 
 ```python
@@ -55,7 +56,7 @@ result = calculate_average(numbers)
 print(f"The average is: {result}")
 ```
 
-**Answer:**
+### Answer
 
 ```python
 def calculate_average(numbers):
@@ -74,7 +75,7 @@ if __name__ == "__main__":
   - Properly indented the code
   - Added appropriate spacing between functions (two branck lines)
 
-### Exercise 2: Module Implementation
+### 2. Module Implementation
 * Create a temperature conversion module that can be both imported and run directly. Save it as `temperature.py`:
 
 ```python
@@ -90,7 +91,7 @@ result = celsius_to_fahrenheit(temp)
 print(f"{temp}°C is {result}°F")
 ```
 
-**Answer:**
+### Answer
 
 ```python
 def celsius_to_fahrenheit(celsius):

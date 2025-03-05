@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
 * [Writing Python script](markdown/writing_script.md)
-* [Using virtual environment](markdown/venv.md)
+* [Using virtual environment](markdown/virtual_environment.md)
 * [Writing simple documents with markdown](markdown/markdown.md)
 * [Uploading codes to GitHub with add, commit, push](markdown/git_commit.md)
 * [Using json and yaml files](markdown/json_and_yaml.md)
