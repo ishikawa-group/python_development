@@ -53,12 +53,17 @@
 * When you are using `venv`, you need to do `source ./venv/bin/activate` at the beginning and you need to `deactivate` if you finish.
 * To make these two steps automatic, you can use `direnv`.
 
-### Mac
-1. `brew install direnv`
+### Install
+1. Download direnv
+  - (Mac) `brew install direnv`
+  - (Windows, WSL) `sudo apt install direnv`
 2. Edit `~/.bashrc` then add (when you're using `bash`)
 ```bash
 export EDITOR=your_favorite_editor (e.g. vim)
 eval "$(direnv hook bash)"
 ```
 3. Go to your target directory and do `direnv edit .`
-4. Add `source ./venv/bin/activate` to `.envdir`.
+4. Add `source ./venv/bin/activate` to `.envrc`.
+
+### Note
+* Sometimes you need do `direnv allow`.

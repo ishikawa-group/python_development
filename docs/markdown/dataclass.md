@@ -1,6 +1,5 @@
 # Python Dataclass
-
-The `dataclass` decorator in Python (introduced in Python 3.7) simplifies the creation of classes that are primarily used to store data. It automatically generates several special methods like `__init__`, `__repr__`, and `__eq__`.
+* The `dataclass` decorator in Python (introduced in Python 3.7) simplifies the creation of classes that are primarily used to store data. It automatically generates several special methods like `__init__`, `__repr__`, and `__eq__`.
 
 ## Comparison with Standard Class
 
@@ -30,14 +29,13 @@ class Point:
     y: int
 ```
 
-Both implementations achieve the same functionality, but the dataclass version:
-- Reduces code by ~70%
-- Eliminates potential errors in special method implementations
-- Maintains better consistency across different data classes
-- Makes the code intention clearer (this is a data container)
+* Both implementations achieve the same functionality, but the dataclass version:
+  - Reduces code by ~70%
+  - Eliminates potential errors in special method implementations
+  - Maintains better consistency across different data classes
+  - Makes the code intention clearer (this is a data container)
 
 ## Key Features and Benefits
-
 1. **Automatic Method Generation**
    - `__init__`: Constructor
    - `__repr__`: String representation
@@ -87,7 +85,6 @@ class Point3D(Point):
 ```
 
 ## Why Choose Dataclass?
-
 1. **Development Speed**
    - Faster to write and maintain
    - Less boilerplate code
