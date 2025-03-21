@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>Making directories for Python module · HonKit</title>
+        <title>Making your own library · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.0.2">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="pathlib.html" />
+    <link rel="next" href="json_and_yaml.html" />
     
     
-    <link rel="prev" href="git_branch.html" />
+    <link rel="prev" href="git_commit.html" />
     
 
     </head>
@@ -153,7 +153,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="json_and_yaml.html">
+        <li class="chapter active" data-level="1.6" data-path="makeing_library.html">
+            
+                <a href="makeing_library.html">
+            
+                    
+                    Making your own library
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="json_and_yaml.html">
             
                 <a href="json_and_yaml.html">
             
@@ -166,7 +179,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7" data-path="pep8.html">
+        <li class="chapter " data-level="1.8" data-path="pep8.html">
             
                 <a href="pep8.html">
             
@@ -179,25 +192,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8" data-path="git_branch.html">
+        <li class="chapter " data-level="1.9" data-path="git_branch.html">
             
                 <a href="git_branch.html">
             
                     
                     Making branch and do pull-request with git
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.9" data-path="module.html">
-            
-                <a href="module.html">
-            
-                    
-                    Making directories for Python module
             
                 </a>
             
@@ -287,7 +287,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Making directories for Python module</a>
+        <a href=".." >Making your own library</a>
     </h1>
 </div>
 
@@ -302,35 +302,98 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="directory-trees-in-python-library">Directory trees in Python library</h1>
+                                <h1 id="making-a-custom-python-library">Making a custom Python library</h1>
 <ul>
-<li><p>Following is the typical directory trees in Python library.</p>
-<pre><code>mypackage/
-├── mypackage/
-│   ├── __init__.py
-│   ├── module1.py
-│   `── module2.py
-│
-├── tests/
-│   ├── test_module1.py
-│   `── test_module2.py
-│
-├── setup.py
-├── README.md
-`── requirements.txt
-</code></pre></li>
-<li><p>In the above case, calling <code>mod.py</code> from test.py is done as:</p>
-<pre><code class="lang-python"><span class="hljs-keyword">from</span> sub_project <span class="hljs-keyword">import</span> mod
+<li>In this section, we will make a Python library. We will put your library to GitHub, and install it by <code>pip</code>.</li>
+<li><p>We take a simple example; the library that doubles your input value that can be used like</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> my_library.double <span class="hljs-keyword">import</span> double
+
+a = <span class="hljs-number">1.0</span>
+a2 = double(a)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f"a = <span class="hljs-subst">{a}</span>, ax2 = <span class="hljs-subst">{a2}</span>"</span>)  <span class="hljs-comment"># -&gt; 1.0, 2.0</span>
 </code></pre>
 </li>
-<li>You need to distinguish "library" and "application".<ul>
-<li>Library: Codes used by import</li>
-<li>Application: Directory execured.</li>
-<li>If you want to use a script in both library and application purposes, name it as <code>__main__.py</code>.<ul>
-<li>In that case, execute as <code>python -m (project)</code>.</li>
 </ul>
+<h2 id="1-create-a-github-repository">1. Create a GitHub Repository</h2>
+<ul>
+<li>Go to GitHub and create a new public repository.</li>
+<li>Then get the URL to your repository by clicking "Code" -&gt; "HTTPS", "Copy URL to clipboard".</li>
+</ul>
+<div align="center">
+<img src="../figures/my_library.png" width="50%"></img>
+</div>
+
+<ul>
+<li>Clone the repository locally:<pre><code class="lang-bash">git <span class="hljs-built_in">clone</span> your_copied_url
+<span class="hljs-built_in">cd</span> my_library
+</code></pre>
 </li>
 </ul>
+<h2 id="2-make-code">2. Make code</h2>
+<ul>
+<li>In your library, the directory structure should be like;</li>
+</ul>
+<pre><code>my_library/
+├── my_library/
+│   ├── __init__.py
+│   └── double.py
+├── setup.py
+├── requirements.txt
+└── README.md
+</code></pre><ul>
+<li><code>__init__.py</code>: Here, this file can be empty.</li>
+<li><p><code>module.py</code>: This contains the main functionality of your package. Here’s an example implementation:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">double</span>(<span class="hljs-params">x</span>):
+    <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+    a = np.array(x)
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">float</span>(a*<span class="hljs-number">2</span>)
+</code></pre>
+</li>
+<li><p><code>setup.py</code>: This contains the package information</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> setuptools <span class="hljs-keyword">import</span> setup, find_packages
+
+setup(
+    name=<span class="hljs-string">"my_library"</span>,
+    version=<span class="hljs-string">"0.1.0"</span>,
+    packages=find_packages(),
+    install_requires=[],
+)
+</code></pre>
+</li>
+<li><p><code>requirements.txt</code>: This contains the libraries necessary for your package. In this case, only numpy is necessary. So the file becomes</p>
+<pre><code>numpy
+</code></pre></li>
+<li><p>Add your package files and commit them:</p>
+<pre><code class="lang-sh">git add .
+git commit -m <span class="hljs-string">"Initial commit"</span>
+git push origin main
+</code></pre>
+</li>
+</ul>
+<h2 id="3-installing-the-package-via-github">3. Installing the Package via GitHub</h2>
+<ul>
+<li>Once your package is pushed to GitHub, you can install it directly using <code>pip</code>.</li>
+<li>Go to the your repository on GitHub on the browser, and get the URL.</li>
+<li>Then download to your local PC with <code>pip</code>:<pre><code class="lang-sh">pip install git+your_copied_url
+</code></pre>
+</li>
+</ul>
+<h2 id="4-test-your-library">4. Test your library</h2>
+<ul>
+<li>After installing the package, you can use it as follows:<pre><code class="lang-python"><span class="hljs-keyword">from</span> my_library.double <span class="hljs-keyword">import</span> double
+result = double(<span class="hljs-number">5</span>)
+<span class="hljs-built_in">print</span>(result)  <span class="hljs-comment"># Output: 10</span>
+</code></pre>
+</li>
+</ul>
+<h2 id="updating-the-package">Updating the Package</h2>
+<ul>
+<li>You can update your code, upload to GitHub, and download via <code>pip</code>.</li>
+<li>Edit your code</li>
+<li>Then upload to the main branch: <code>git add; git commit -m "asdf"; git push</code></li>
+<li>Install again<pre><code class="lang-sh">pip install git+your_repository_url
+</code></pre>
 </li>
 </ul>
 
@@ -360,12 +423,12 @@
 
             
                 
-                <a href="git_branch.html" class="navigation navigation-prev " aria-label="Previous page: Making branch and do pull-request with git">
+                <a href="git_commit.html" class="navigation navigation-prev " aria-label="Previous page: Uploading codes to GitHub with add, commit, push">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="pathlib.html" class="navigation navigation-next " aria-label="Next page: Using Pathlib">
+                <a href="json_and_yaml.html" class="navigation navigation-next " aria-label="Next page: Using json and yaml files">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -376,7 +439,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Making directories for Python module","level":"1.9","depth":1,"next":{"title":"Using Pathlib","level":"1.10","depth":1,"path":"markdown/pathlib.md","ref":"markdown/pathlib.md","articles":[]},"previous":{"title":"Making branch and do pull-request with git","level":"1.8","depth":1,"path":"markdown/git_branch.md","ref":"markdown/git_branch.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/module.md","mtime":"2025-02-20T14:54:38.470Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-03-21T07:57:43.370Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Making your own library","level":"1.6","depth":1,"next":{"title":"Using json and yaml files","level":"1.7","depth":1,"path":"markdown/json_and_yaml.md","ref":"markdown/json_and_yaml.md","articles":[]},"previous":{"title":"Uploading codes to GitHub with add, commit, push","level":"1.5","depth":1,"path":"markdown/git_commit.md","ref":"markdown/git_commit.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/makeing_library.md","mtime":"2025-03-21T08:35:40.107Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-03-21T08:37:54.516Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
