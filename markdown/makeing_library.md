@@ -104,10 +104,9 @@ print(double([1, 2, 3]))  # Output: [ 2  4  6 ]
   ```
 
 ## Using your own library with other libraries
-* In `setup.py`, include
-  ```
-  install_requires=[
-      "numpy",
-      "git+https://github.com/username/my_package.git@main"
-  ],
-  ```
+* Edit `pyproject.toml` to include like below:
+```toml
+dependencies = [
+    "some_library @ git+https://github.com/yourname/some_library.git",
+    ]
+```
