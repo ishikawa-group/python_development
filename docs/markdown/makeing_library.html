@@ -292,9 +292,7 @@
                                 <h1 id="making-a-custom-python-library">Making a custom Python library</h1>
 <ul>
 <li>In this section, we will make a Python library. We will put your library to GitHub, and install it by <code>pip</code>.</li>
-<li><p>We take a simple example; the library that doubles your input value that can be used like</p>
-<pre><code class="lang-python"><span class="hljs-keyword">from</span> my_library.double <span class="hljs-keyword">import</span> double
-
+<li>We take a simple example; the library that doubles your input value that can be used like<pre><code class="lang-python"><span class="hljs-keyword">from</span> my_library.double <span class="hljs-keyword">import</span> double
 a = <span class="hljs-number">1.0</span>
 a2 = double(a)
 <span class="hljs-built_in">print</span>(<span class="hljs-string">f"a = <span class="hljs-subst">{a}</span>, ax2 = <span class="hljs-subst">{a2}</span>"</span>)  <span class="hljs-comment"># -&gt; 1.0, 2.0</span>
@@ -307,7 +305,7 @@ a2 = double(a)
 <li>Then get the URL to your repository by clicking "Code" -&gt; "HTTPS", "Copy URL to clipboard".</li>
 </ul>
 <div align="center">
-<img src="../figures/my_library.png" width="50%"></img>
+<img src="../figures/my_library.png" width="80%"></img>
 </div>
 
 <ul>
@@ -325,7 +323,6 @@ a2 = double(a)
 │   ├── __init__.py
 │   └── double.py
 ├── setup.py
-├── requirements.txt
 └── README.md
 </code></pre><ul>
 <li><code>__init__.py</code>: Here, this file can be empty.</li>
@@ -344,7 +341,7 @@ setup(
     name=<span class="hljs-string">"my_library"</span>,
     version=<span class="hljs-string">"0.1.0"</span>,
     packages=find_packages(),
-    install_requires=[],
+    install_requires=[<span class="hljs-string">"numpy"</span>],
 )
 </code></pre>
 </li>
@@ -374,14 +371,39 @@ result = double(<span class="hljs-number">5</span>)
 </code></pre>
 </li>
 </ul>
+<hr></hr>
+<h1 id="additional-information">Additional information</h1>
+<h2 id="package-dependence">Package dependence</h2>
+<ul>
+<li>When you are using some other libraries in your own-library, these libraries should be installed.</li>
+<li>This dependence is controlled in either way:<ol>
+<li><code>install_requires</code> in <code>setup.py</code></li>
+<li><code>requirements.txt</code></li>
+</ol>
+</li>
+<li>In the above example, we took 1. But if you want the exact match of your library version, method 2 is better.</li>
+<li>In this way, you prepare the file <code>requirements.txt</code> in the library top directory, and write like<pre><code>numpy
+scipy
+pandas
+</code></pre></li>
+<li>Then use <code>pip install -r requirements.txt</code> when you download your own-written library.</li>
+</ul>
 <h2 id="updating-the-package">Updating the Package</h2>
 <ul>
 <li>You can update your code, upload to GitHub, and download via <code>pip</code>.</li>
 <li>Edit your code</li>
-<li>Then upload to the main branch: <code>git add; git commit -m "asdf"; git push</code></li>
+<li>Then upload to the main branch: <code>git add; git commit -m "some message"; git push</code></li>
 <li>Install again<pre><code class="lang-sh">pip install git+your_repository_url
 </code></pre>
 </li>
+</ul>
+<h2 id="using-your-own-library-with-other-libraries">Using your own library with other libraries</h2>
+<ul>
+<li>In <code>setup.py</code>, include<pre><code>install_requires=[
+    "numpy",
+    "git+https://github.com/username/my_package.git@main"
+],
+</code></pre></li>
 </ul>
 
                                 
@@ -426,7 +448,7 @@ result = double(<span class="hljs-number">5</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Making your own library","level":"1.6","depth":1,"next":{"title":"Using json and yaml files","level":"1.7","depth":1,"path":"markdown/json_and_yaml.md","ref":"./markdown/json_and_yaml.md","articles":[]},"previous":{"title":"Uploading codes to GitHub","level":"1.5","depth":1,"path":"markdown/git_commit.md","ref":"./markdown/git_commit.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/makeing_library.md","mtime":"2025-03-21T08:35:40.107Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-03-21T13:44:00.689Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Making your own library","level":"1.6","depth":1,"next":{"title":"Using json and yaml files","level":"1.7","depth":1,"path":"markdown/json_and_yaml.md","ref":"./markdown/json_and_yaml.md","articles":[]},"previous":{"title":"Uploading codes to GitHub","level":"1.5","depth":1,"path":"markdown/git_commit.md","ref":"./markdown/git_commit.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/makeing_library.md","mtime":"2025-03-22T00:59:39.305Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-03-22T01:03:33.861Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
