@@ -36,8 +36,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "my_library"
 version = "0.0.1"
-dependencies = ["numpy"]
+dependencies = ["numpy==2.2.3"]
 ```
+* You can relax the version dependence like "numpy>=2".
 
 ### 4. `README.md`
 * You can write anything on this file. Empty is OK.
