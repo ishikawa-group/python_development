@@ -28,6 +28,7 @@ def double(x):
 
 ### 3. `pyproject.toml`
 * This file contains the package information.
+
 ```toml
 [build-system]
 requires = ["setuptools"]
@@ -38,6 +39,7 @@ name = "my_library"
 version = "0.0.1"
 dependencies = ["numpy==2.2.3"]
 ```
+
 * You can relax the version dependence like "numpy>=2".
 
 ### 4. `README.md`
