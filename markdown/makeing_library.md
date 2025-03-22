@@ -1,86 +1,80 @@
-# Making a custom Python library
-* In this section, we will make a Python library. We will put your library to GitHub, and install it by `pip`.
-* We take a simple example; the library that doubles your input value that can be used like
-  ```python
-  from my_library.double import double
-  a = 1.0
-  a2 = double(a)
-  print(f"a = {a}, ax2 = {a2}")  # -> 1.0, 2.0
+# Making your own Python library
+* In this page, we will learn how to make a Python library that can be downloaded with `pip`.
+* The example here, `my_library`, is a simple Python library that doubles the given value.
+
+## Making library
+* The directory strucuture should be like the folllows:
+  ```
+  my_library/
+  ├── my_library/
+  │   ├── __init__.py
+  │   └── double.py
+  ├── pyproject.toml
+  └── README.md
   ```
 
-## 1. Create a GitHub Repository
-* Go to GitHub and create a new public repository.
-* Then get the URL to your repository by clicking "Code" -> "HTTPS", "Copy URL to clipboard".
+### 1. Python module
+* Create `double.py` with the following code:
+
+```python
+import numpy as np
+
+def double(x):
+    return np.array(x) * 2
+```
+
+### 2. `__init__.py`
+* This can be an empty file, so can be made with `touch my_library/__init__.py`
+
+### 3. `pyproject.toml`
+* This file contains the package information.
+```toml
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my_library"
+version = "0.0.1"
+dependencies = ["numpy"]
+```
+
+### 4. `README.md`
+* You can write anything on this file. Empty is OK.
+
+## Upload to GitHub
+* Create a GitHub repository and upload the code using the following commands:
+
+```sh
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/my_library.git
+git push -u origin main
+```
+* Or you can use browser to make GitHub repository.
+* To push or download the file, the URL should be copied on browser.
 
 <div align=center>
 <img src="../figures/my_library.png" width=80%>
 </div>
 
-* Clone the repository locally:
-```bash
-git clone your_copied_url
-cd my_library
+## Install the Library
+* You can install the library directly from GitHub using pip:
+```sh
+pip install git+https://github.com/YOUR_USERNAME/my_library.git
 ```
 
-## 2. Make code
-* In your library, the directory structure should be like;
+## Use your library
+* You can use the library in a Python script or interactive environment as follows:
 
+```python
+from my_library.double import double
+
+print(double(5))  # Output: 10
+print(double([1, 2, 3]))  # Output: [ 2  4  6 ]
 ```
-my_library/
-├── my_library/
-│   ├── __init__.py
-│   └── double.py
-├── setup.py
-└── README.md
-```
-
-* `__init__.py`: Here, this file can be empty.
-* `module.py`: This contains the main functionality of your package. Here’s an example implementation:
-  ```python
-  def double(x):
-      import numpy as np
-
-      a = np.array(x)
-      return float(a*2)
-  ```
-* `setup.py`: This contains the package information
-  ```python
-  from setuptools import setup, find_packages
-
-  setup(
-      name="my_library",
-      version="0.1.0",
-      packages=find_packages(),
-      install_requires=["numpy"],
-  )
-  ```
-* `requirements.txt`: This contains the libraries necessary for your package. In this case, only numpy is necessary. So the file becomes
-  ```
-  numpy
-  ```
-
-3. Add your package files and commit them:
-  ```sh
-  git add .
-  git commit -m "Initial commit"
-  git push origin main
-  ```
-
-## 3. Installing the Package via GitHub
-* Once your package is pushed to GitHub, you can install it directly using `pip`.
-* Go to the your repository on GitHub on the browser, and get the URL.
-* Then download to your local PC with `pip`:
-  ```sh
-  pip install git+your_copied_url
-  ```
-
-## 4. Test your library
-* After installing the package, you can use it as follows:
-  ```python
-  from my_library.double import double
-  result = double(5)
-  print(result)  # Output: 10
-  ```
 
 ---
 
