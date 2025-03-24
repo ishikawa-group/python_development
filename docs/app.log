@@ -1,0 +1,4 @@
+2025-03-24 11:30:50,638 - __main__ - INFO - Starting the application
+2025-03-24 11:30:50,639 - __main__ - DEBUG - This is a debug message from function_one
+2025-03-24 11:30:50,639 - __main__ - INFO - This is an info message from function_two
+2025-03-24 11:30:50,639 - __main__ - WARNING - Application is ending
