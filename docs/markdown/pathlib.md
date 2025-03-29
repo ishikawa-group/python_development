@@ -13,6 +13,16 @@ from pathlib import Path
 p = Path("file.txt")                    # Current directory
 p = Path("/home/user/docs/file.txt")    # Absolute path
 p = Path.home() / "docs" / "file.txt"   # Combine paths with /
+from pathlib import Path
+
+# finding the path where that Python file exists
+p = Path(__file__).resolve()
+
+# upper directory
+p = Path(__file__).resolve().parent
+
+# upper-upper directory
+p = Path(__file__).resolve().parent.parent
 ```
 
 ## Common Operations
