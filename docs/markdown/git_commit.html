@@ -354,6 +354,36 @@ git push origin main            <span class="hljs-comment"># Push changes to rem
 <ul>
 <li>Make your own temporary repository on GitHub. Write some code at local, and then <code>git add</code>, <code>git commit</code>, <code>git push</code> to upload your change.</li>
 </ul>
+<hr></hr>
+<h1 id="using-private-repository">Using private repository</h1>
+<ul>
+<li>When using private repository in GitHub, take following procedure</li>
+</ul>
+<h2 id="github-classic-token-private-repository-access-guide">GitHub Classic Token: Private Repository Access Guide</h2>
+<h3 id="step-1-create-a-classic-personal-access-token-pat">Step 1: Create a Classic Personal Access Token (PAT)</h3>
+<ol>
+<li>Log in to GitHub and visit:<br></br>👉 <a href="https://github.com/settings/tokens" target="_blank">https://github.com/settings/tokens</a></li>
+<li>Click <strong>"Generate new token (Classic)"</strong></li>
+</ol>
+<h3 id="step-2-clone-the-repository-using-https">Step 2: Clone the repository using HTTPS</h3>
+<pre><code class="lang-bash">git <span class="hljs-built_in">clone</span> https://github.com/your-username/private-repo.git
+</code></pre>
+<ul>
+<li><strong>Username</strong>: Your GitHub username  </li>
+<li><strong>Password</strong>: Paste the generated Classic Token</li>
+</ul>
+<h3 id="step-3-save-your-token-to-avoid-repeated-prompts">Step 3: Save your token to avoid repeated prompts</h3>
+<pre><code class="lang-bash">git config --global credential.helper store
+</code></pre>
+<ul>
+<li>Your token will be stored in plain text in <code>~/.git-credentials</code>.  </li>
+<li>Use only on trusted machines.</li>
+</ul>
+<h3 id="step-4-development-loop-standard-git-usage">Step 4: Development loop (standard Git usage)</h3>
+<pre><code class="lang-bash">git add .
+git commit -m <span class="hljs-string">"your commit message"</span>
+git push origin main
+</code></pre>
 
                                 
                                 </section>
@@ -397,7 +427,7 @@ git push origin main            <span class="hljs-comment"># Push changes to rem
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Uploading codes to GitHub","level":"1.5","depth":1,"next":{"title":"Using argparse","level":"1.6","depth":1,"path":"markdown/argparse.md","ref":"./markdown/argparse.md","articles":[]},"previous":{"title":"Writing Markdown","level":"1.4","depth":1,"path":"markdown/markdown.md","ref":"./markdown/markdown.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/git_commit.md","mtime":"2025-02-24T08:09:14.000Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-03-29T11:37:43.170Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Uploading codes to GitHub","level":"1.5","depth":1,"next":{"title":"Using argparse","level":"1.6","depth":1,"path":"markdown/argparse.md","ref":"./markdown/argparse.md","articles":[]},"previous":{"title":"Writing Markdown","level":"1.4","depth":1,"path":"markdown/markdown.md","ref":"./markdown/markdown.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-published-with"],"pluginsConfig":{"hide-published-with":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"markdown/git_commit.md","mtime":"2025-05-12T21:42:55.210Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-05-12T21:44:33.317Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

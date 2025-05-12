@@ -49,3 +49,44 @@ git push origin main            # Push changes to remote repository
 
 ## Exercise
 * Make your own temporary repository on GitHub. Write some code at local, and then `git add`, `git commit`, `git push` to upload your change.
+
+
+
+---
+
+
+
+# Using private repository
+
+* When using private repository in GitHub, take following procedure
+
+## GitHub Classic Token: Private Repository Access Guide
+###  Step 1: Create a Classic Personal Access Token (PAT)
+1. Log in to GitHub and visit:  
+   👉 https://github.com/settings/tokens
+2. Click **"Generate new token (Classic)"**
+
+###  Step 2: Clone the repository using HTTPS
+
+```bash
+git clone https://github.com/your-username/private-repo.git
+```
+
+- **Username**: Your GitHub username  
+- **Password**: Paste the generated Classic Token
+
+###  Step 3: Save your token to avoid repeated prompts
+
+```bash
+git config --global credential.helper store
+```
+* Your token will be stored in plain text in `~/.git-credentials`.  
+* Use only on trusted machines.
+
+###  Step 4: Development loop (standard Git usage)
+
+```bash
+git add .
+git commit -m "your commit message"
+git push origin main
+```
